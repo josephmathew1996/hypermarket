@@ -20,8 +20,8 @@
       {
    
       $servername = "localhost";
-      $username = "root";
-      $password = "";
+      $username = "joseph";
+      $password = "password";
       $database =  "market";
 
     // Create MySQL connection
