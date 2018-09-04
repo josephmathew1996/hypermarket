@@ -8,8 +8,8 @@
 
       // In the variables section below, replace user and password with your own MySQL credentials as created on your server
     $servername = "localhost";
-    $username = "root";
-    $password = "";
+    $username = "joseph";
+    $password = "password";
     $database =  "market";
 
     // Create MySQL connection
