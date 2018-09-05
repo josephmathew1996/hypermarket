@@ -175,7 +175,7 @@
         <br>
         <br>
         <div style="text-align: center;">
-           <h1 >Add product image to databse</h1>
+           <h1 >Add product image to database</h1>
            <form action="admin.php" method="post" enctype="multipart/form-data">
            <input type="file" name="image">
            <br>
