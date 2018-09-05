@@ -68,7 +68,7 @@
         while (($myData = fgetcsv($handle,1000,',')) !=FALSE) 
         {
          $stmt = $this->conn->prepare("INSERT INTO products (name,price,quantity) VALUES (?, ?, ?)");
-        $stmt->bind_param("sii",$name,$price,$quantity);
+         $stmt->bind_param("sii",$name,$price,$quantity);
 
         $name = $myData[0];
         $price = $myData[1];
@@ -116,18 +116,42 @@
         //upload the file
         $handle = fopen($fileTmpName,'r'); 
         while (($myData = fgetcsv($handle,1000,',')) !=FALSE) 
-        {
-         $stmt = $this->conn->prepare("INSERT INTO users (number) VALUES (?)");
-         $stmt->bind_param("s",$number);
-
+        { 
+          //echo $myData[0].'<br>';
+         if(strlen($myData[0])==11 && strpos($myData[0],"0494") !==FALSE) 
+         {
+          //echo 'Land no found<br>';
+         
+         $stmt = $this->conn->prepare("INSERT INTO users (number,type) VALUES (?,?)");
+         $stmt->bind_param("ss",$number,$type);
+         
          $number = $myData[0];
-        
+         $type= "landline";
+         
          $stmt->execute();
+         }
+         else if(strlen($myData[0])==10)
+         { 
+           //echo "Mob no found<br>";
+           $stmt = $this->conn->prepare("INSERT INTO users (number,type) VALUES (?,?)");
+           $stmt->bind_param("ss",$number,$type);
+
+           $number = $myData[0];
+           $type = "mobile";
+          
+           $stmt->execute();
+         }
+         else
+         {
+          echo "Invalid Number<br>";
+         }
+        
 
          //$result = $stmt->get_result();
          // $row = $result->fetch_assoc();
          //echo $row;
         }
+
       if($stmt->affected_rows===0)
         {
             die("error in uploading file".mysql_connect_error());
