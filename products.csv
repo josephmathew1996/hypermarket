@@ -1,4 +1,17 @@
- Sugar C1,50,100
-Sugar C2,55,50
-Paste C1,25,40
-Paste C2,40,30
+Cooker,200,1,Household
+Plates,150,10,Household
+Bowls,250,10,Household
+Glasses,125,10,Household
+Coffes Mugs,250,5,Household
+Bread,30,1,Bakery
+Cake,100,1,Bakery
+Bun,40,1,Bakery
+Biscuit,30,1,Bakery
+Watch,500,1,Fancy
+Ring,40,1,Fancy
+Football,450,1,Sports
+Cricket Ball,50,1,Sports
+Cricket Bat,400,1,Sports
+Redmi Note 5 Pro,15000,1,Electronics
+Samsung LEDTV,400000,1,Electronics
+Dell Inspiron N4050,35000,1,Electronics
