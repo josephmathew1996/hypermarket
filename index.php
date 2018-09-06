@@ -33,13 +33,14 @@
        if($result->num_rows>0)
        {
          
-          $row =mysqli_fetch_all($result,MYSQLI_ASSOC);
-          return $row;
+      $row =mysqli_fetch_all($result,MYSQLI_ASSOC);
           
-          //print_r($row);
-           
-           //echo $row['name'].'<br>'.$row['price'].'<br>'.$row['quantity'].'<br>';
+       $res = [];
+       foreach ($row as $value) {
+        $res[$value['category']][] = $value;
+       }
       }
+      return $res;
       else
        {
          global $error;
@@ -185,52 +186,86 @@ nav ul li a{
        <br>
 
        <section class="products" id="products">
-
-           <?php
-         if($error=="")
-        {
-          foreach ($res as $value) {
-        
-        ?>
-        
-            <img style=""> src="<?php echo $value['image_path'] ?>">
-            <h1><?php echo $value['name']?></h1>
-            <h2><?php echo $value['price']?></h2>
-            <h3><?php echo $value['quantity']?></h3>
-       
-       <?php
-         }
-     }
-     else{
-     ?>
-
-       <br>
-       <br>
-       <br>
-       <br>
-     <h4 style="text-align: center;"><?php echo $error; ?></h4>
-     <?php
-
-    }
-         ?>
+      
          
 <div class="container tab1">
 
-        <ul id="tabs-swipe-demo" class="tabs" style="text-align: center;">
-    <li class="tab col s3 active"><a  href="#test-swipe-1">Household</a></li>
-    <li class="tab col s3"><a  href="#test-swipe-2">Bakery</a></li>
-    <li class="tab col s3"><a  href="#test-swipe-3">Fancy</a></li>
-    <li class="tab col s3"><a  href="#test-swipe-4">Electronics</a></li>
-    <li class="tab col s3"><a  href="#test-swipe-5">Sports</a></li>
-  </ul>
-  <div id="test-swipe-1" class="col s12 ">House hold items</div>
-  <div id="test-swipe-2" class="col s12 ">BAkery items</div>
-  <div id="test-swipe-3" class="col s12 ">Fancy</div>
-  <div id="test-swipe-4" class="col s12 ">ELectronics</div>
-  <div id="test-swipe-5" class="col s12 ">SPorts</div>
-            </div>  
+        <ul  id="tabs-swipe-demo" class="tabs" style="text-align: center;">
 
-       </section>
+    <li  class="tab col s3 active"><a href="#test-swipe-1">Household</a></li>
+    <li  class="tab col s3"><a  href="#test-swipe-2">Bakery</a></li>
+    <li  class="tab col s3"><a  href="#test-swipe-3">Fancy</a></li>
+    <li  class="tab col s3"><a  href="#test-swipe-4">Electronics</a></li>
+    <li  class="tab col s3"><a  href="#test-swipe-5">Sports</a></li>
+
+  </ul>
+
+   <?php
+    if($error=="")
+    {
+    ?>
+ <div id="test-swipe-1">
+       <div class="row">
+       
+    <?php
+    foreach ($result as $value) {
+
+     while($value['category']=='Household'){
+         
+    ?>
+    <div class="col s12 m6 l3">
+      <div class="card">
+        <div class="card-image">
+          <img src="<?php echo $value['image_path'] ?>">
+          <span class="card-title black-text"><?php echo $value['name']?></span>
+        </div>
+        <div class="card-content">
+          <h2><?php echo $value['price']?></h2>
+          <h3><?php echo $value['quantity']?></h3>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>
+       <?php
+     }
+     break;
+    }
+
+    ?>     
+  </div>
+</div> 
+    <?php
+    }
+     else{
+     ?>
+        <br>
+        <h4 style="text-align: center;"><?php echo $error; ?></h4>
+     <?php
+
+        }
+     ?>
+
+  <div id="test-swipe-2" class="col s12 ">
+       
+  </div>
+
+  <div id="test-swipe-3" class="col s12 ">
+      
+ </div>
+    
+  <div id="test-swipe-4" class="col s12 ">
+    
+ </div>
+
+  <div id="test-swipe-5" class="col s12 ">
+  
+  </div>
+
+</div>
+        
+</section>
         
      
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -263,7 +298,7 @@ nav ul li a{
   });
         
         $('.tab1').on('click', 'li', function() {
-    $('.tab1 li.active').removeClass('active');
+    $('.tab1 li.active ').removeClass('active');
     $(this).addClass('active');
 });
 
