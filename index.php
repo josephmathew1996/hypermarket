@@ -92,17 +92,19 @@ nav ul li a{
     color: white;
     
   }
-  .tab ul li a{
+  .tab1 ul li a{
     font-weight: bold;
     background-color: white;
     color: green;
+    
   }
 
-  .tab ul li.active a{
+  .tab1 ul li.active a.active{
     background-color: #4caf50;
     color: white;
+    
   }
-
+  
   
   
   .sidenav li a
@@ -212,10 +214,10 @@ nav ul li a{
     }
          ?>
          
-<div class="container tab">
+<div class="container tab1">
 
         <ul id="tabs-swipe-demo" class="tabs" style="text-align: center;">
-    <li class="tab col s3 active"><a class="" href="#test-swipe-1">Household</a></li>
+    <li class="tab col s3 active"><a  href="#test-swipe-1">Household</a></li>
     <li class="tab col s3"><a  href="#test-swipe-2">Bakery</a></li>
     <li class="tab col s3"><a  href="#test-swipe-3">Fancy</a></li>
     <li class="tab col s3"><a  href="#test-swipe-4">Electronics</a></li>
@@ -260,8 +262,8 @@ nav ul li a{
         });
   });
         
-        $('.tabs').on('click', 'li', function() {
-    $('.tabs li.active').removeClass('active');
+        $('.tab1').on('click', 'li', function() {
+    $('.tab1 li.active').removeClass('active');
     $(this).addClass('active');
 });
 
