@@ -67,12 +67,13 @@
         $handle = fopen($fileTmpName,'r'); 
         while (($myData = fgetcsv($handle,1000,',')) !=FALSE) 
         {
-         $stmt = $this->conn->prepare("INSERT INTO products (name,price,quantity) VALUES (?, ?, ?)");
-         $stmt->bind_param("sii",$name,$price,$quantity);
+         $stmt = $this->conn->prepare("INSERT INTO products (name,price,quantity,category) VALUES (?, ?, ?, ?)");
+         $stmt->bind_param("siis",$name,$price,$quantity,$category);
 
         $name = $myData[0];
         $price = $myData[1];
         $quantity = $myData[2];
+        $category = $myData[3];
 
         $stmt->execute();
 
